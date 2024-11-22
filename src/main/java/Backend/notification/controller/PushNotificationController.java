@@ -16,11 +16,13 @@ public class PushNotificationController {
         this.pushNotificationService = pushNotificationService;
     }
 
-    @RequestMapping (value= "/sendNotification", method = RequestMethod.POST)
+    @RequestMapping(value = "/sendNotification", method = RequestMethod.POST)
     public String senNotification(String token, String title, String message){
-        pushNotificationService.sendPushNotification(token,title,message);
+        System.out.println("Recibido token: " + token);
+        System.out.println("Título: " + title);
+        System.out.println("Mensaje: " + message);
+        pushNotificationService.sendPushNotification(token, title, message);
         return "Notificación enviada";
-
     }
 
 }
