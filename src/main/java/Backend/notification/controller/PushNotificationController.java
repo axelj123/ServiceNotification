@@ -1,6 +1,8 @@
 package Backend.notification.controller;
 
 import Backend.notification.Service.PushNotificationService;
+import Backend.notification.dto.NotificationRequest;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,11 +19,13 @@ public class PushNotificationController {
     }
 
     @RequestMapping(value = "/sendNotification", method = RequestMethod.POST)
-    public String senNotification(String token, String title, String message){
-        System.out.println("Recibido token: " + token);
-        System.out.println("Título: " + title);
-        System.out.println("Mensaje: " + message);
-        pushNotificationService.sendPushNotification(token, title, message);
+    public String senNotification(@RequestBody NotificationRequest request){
+        System.out.println("Recibido token: " + request.getToken());
+        System.out.println("Título: " + request.getTitle());
+        System.out.println("Mensaje: " + request.getMessage());
+
+        // Llamar al servicio para enviar la notificación
+        pushNotificationService.sendPushNotification(request.getToken(), request.getTitle(), request.getMessage());
         return "Notificación enviada";
     }
 
