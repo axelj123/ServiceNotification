@@ -23,8 +23,6 @@ public class PushNotificationController {
         System.out.println("Recibido token: " + request.getToken());
         System.out.println("Título: " + request.getTitle());
         System.out.println("Mensaje: " + request.getMessage());
-
-        // Llamar al servicio para enviar la notificación
         pushNotificationService.sendPushNotification(request.getToken(), request.getTitle(), request.getMessage());
         return "Notificación enviada";
     }
